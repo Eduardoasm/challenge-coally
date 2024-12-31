@@ -7,16 +7,15 @@ import {
   updateTask,
 } from './task.controller';
 import { validateTask, validateTaskId, validateUpdateTask } from './task.validators';
-import { authenticate } from '../../middlewares/authenticate';
 
 const taskRouter = Router();
 
 // CRUDS
-taskRouter.post('/', authenticate, validateTask, createTask);
-taskRouter.get('/', authenticate, getTasks);
-taskRouter.get('/:id', authenticate, validateTaskId, getTask);
-taskRouter.put('/:id', authenticate, validateUpdateTask, validateTaskId, updateTask);
-taskRouter.delete('/:id', authenticate, validateTaskId, deleteTask);
+taskRouter.post('/', validateTask, createTask);
+taskRouter.get('/', getTasks);
+taskRouter.get('/:id', validateTaskId, getTask);
+taskRouter.put('/:id', validateUpdateTask, validateTaskId, updateTask);
+taskRouter.delete('/:id', validateTaskId, deleteTask);
 
 export default taskRouter;
 

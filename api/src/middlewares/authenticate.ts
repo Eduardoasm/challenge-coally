@@ -7,7 +7,6 @@ export async function authenticate(
   next: NextFunction
 ): Promise<any> {
   const token = req?.cookies?.token || req?.headers?.authorization;
-  console.log("soy token", token)
   try {
     if (!token) {
       throw new Error('Unauthorized: Token not provided')
