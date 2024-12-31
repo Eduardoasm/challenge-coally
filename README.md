@@ -55,3 +55,7 @@ Frontend: React, Chakra UI, React Router
 Backend: Node.js, Express, MongoDB
 Authentication: JWT
 ````
+
+## User for testing app
+
+descripcion: Se realizo la autenticacion solo en el backend, por temas de tiempo no se realizo en el front

@@ -9,7 +9,7 @@ const taskRouter = (0, express_1.Router)();
 taskRouter.post('/', authenticate_1.authenticate, task_validators_1.validateTask, task_controller_1.createTask);
 taskRouter.get('/', authenticate_1.authenticate, task_controller_1.getTasks);
 taskRouter.get('/:id', authenticate_1.authenticate, task_validators_1.validateTaskId, task_controller_1.getTask);
-taskRouter.put('/:id', authenticate_1.authenticate, task_validators_1.validateTask, task_validators_1.validateTaskId, task_controller_1.updateTask);
+taskRouter.put('/:id', authenticate_1.authenticate, task_validators_1.validateUpdateTask, task_validators_1.validateTaskId, task_controller_1.updateTask);
 taskRouter.delete('/:id', authenticate_1.authenticate, task_validators_1.validateTaskId, task_controller_1.deleteTask);
 exports.default = taskRouter;
 /**

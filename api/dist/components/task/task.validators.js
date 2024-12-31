@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateTaskId = exports.validateTask = void 0;
+exports.validateUpdateTask = exports.validateTaskId = exports.validateTask = void 0;
 const express_validator_1 = require("express-validator");
 // Validation middleware
 exports.validateTask = [
@@ -22,4 +22,20 @@ exports.validateTask = [
 ];
 exports.validateTaskId = [
     (0, express_validator_1.param)('id').isString().withMessage('Invalid task ID'),
+];
+exports.validateUpdateTask = [
+    (0, express_validator_1.body)('title')
+        .optional()
+        .trim()
+        .isLength({ min: 3, max: 50 })
+        .withMessage('Title must be between 3 and 50 characters'),
+    (0, express_validator_1.body)('description')
+        .optional()
+        .trim()
+        .isLength({ max: 150 })
+        .withMessage('Description cannot exceed 150 characters'),
+    (0, express_validator_1.body)('completed')
+        .optional()
+        .isIn([true, false])
+        .withMessage('Status must be either true or false'),
 ];
