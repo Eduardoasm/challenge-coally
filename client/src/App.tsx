@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// src/App.tsx
+import React, { useState } from 'react';
+import { Box, Button, ChakraProvider } from '@chakra-ui/react';
+import { TaskCard } from './components/taskCard';
+import { TaskList } from './components/taskList';
+import { TaskFilter } from './components/taskFilter';
+import { Layout } from './components/layout';
+import { TaskProvider } from './context/taskContext';
+import NavBar from './components/navBar';
 
 function App() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+     <TaskProvider> 
+      <NavBar isModalOpen={isModalOpen} openModal={openModal} closeModal={closeModal} />
+        <TaskFilter />
+        <Layout>
+          <TaskList isModalOpen={isModalOpen} openModal={openModal} closeModal={closeModal} />
+        </Layout>
+    </TaskProvider> 
+    </ChakraProvider>
   );
 }
 
