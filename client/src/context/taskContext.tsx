@@ -54,7 +54,13 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
 
   const fetchPendingTasks = async (): Promise<{ success: boolean, data: Task[] }> => {
     setLoading(true);
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/tasks?completed=${false}`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/tasks?completed=${false}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+      credentials: 'include'
+    });
     const data = await response.json();
     setTasks(data.data);
     setLoading(false);
@@ -63,7 +69,13 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
 
   const fetchCompletedTasks = async (): Promise<{ success: boolean, data: Task[] }> => {
     setLoading(true);
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/tasks?completed=${true}`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/tasks?completed=${true}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+      credentials: 'include'
+    });
     const data = await response.json();
     setTasks(data.data);
     setLoading(false);
@@ -72,7 +84,13 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
 
   const fetchTasks = async (): Promise<{ success: boolean, data: Task[] }> => {
     setLoading(true);
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/tasks`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/tasks`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+      credentials: 'include'
+    });
     const data = await response.json();
     setLoading(false);
     setTasks(data.data);
@@ -84,7 +102,8 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      credentials: 'include'
     });
     const data = await response.json();
     setLoading(false);
@@ -92,7 +111,13 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
   }
 
   const fetchTask = async (taskId: string) => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/tasks/${taskId}`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/tasks/${taskId}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+      credentials: 'include'
+    });
     const data = await response.json();
     setLoading(false);
     setTask(data.data)
@@ -105,7 +130,8 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(task)
+      body: JSON.stringify(task),
+      credentials: 'include'
     });
     const data = await response.json();
     setLoading(false);
@@ -118,14 +144,15 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(task)
+      body: JSON.stringify(task),
+      credentials: 'include'
     });
     const data = await response.json();
     setLoading(false);
     return data;
   }
   
-  useEffect( ()=> {
+  useEffect(()=> {
     fetchTasks();
   } ,[])
 

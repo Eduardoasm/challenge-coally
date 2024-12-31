@@ -3,13 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const task_controller_1 = require("./task.controller");
 const task_validators_1 = require("./task.validators");
+const authenticate_1 = require("../../middlewares/authenticate");
 const taskRouter = (0, express_1.Router)();
 // CRUDS
-taskRouter.post('/', task_validators_1.validateTask, task_controller_1.createTask);
-taskRouter.get('/', task_controller_1.getTasks);
-taskRouter.get('/:id', task_validators_1.validateTaskId, task_controller_1.getTask);
-taskRouter.put('/:id', task_validators_1.validateTask, task_validators_1.validateTaskId, task_controller_1.updateTask);
-taskRouter.delete('/:id', task_validators_1.validateTaskId, task_controller_1.deleteTask);
+taskRouter.post('/', authenticate_1.authenticate, task_validators_1.validateTask, task_controller_1.createTask);
+taskRouter.get('/', authenticate_1.authenticate, task_controller_1.getTasks);
+taskRouter.get('/:id', authenticate_1.authenticate, task_validators_1.validateTaskId, task_controller_1.getTask);
+taskRouter.put('/:id', authenticate_1.authenticate, task_validators_1.validateTask, task_validators_1.validateTaskId, task_controller_1.updateTask);
+taskRouter.delete('/:id', authenticate_1.authenticate, task_validators_1.validateTaskId, task_controller_1.deleteTask);
 exports.default = taskRouter;
 /**
  * @openapi

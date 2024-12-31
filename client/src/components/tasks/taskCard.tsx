@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, HStack, Text, IconButton, Checkbox, useToast } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
-import { useTaskContext } from '../context/taskContext';
+import { useTaskContext } from '../../context/taskContext';
 
 interface Task {
   _id?: any;
