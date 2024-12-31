@@ -9,7 +9,7 @@ import cookieParser from 'cookie-parser';
 const app = express();
 
 const corsOptions = {
-    origin: ['http://localhost:3000', 'https://client-chi-wheat.vercel.app'],
+    origin: ['https://client-chi-wheat.vercel.app', 'http://localhost:3000'],
     credentials: true,
     methods: 'GET,POST,PUT,DELETE,OPTIONS',
     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
