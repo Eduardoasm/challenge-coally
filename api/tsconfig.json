@@ -112,6 +112,17 @@
   "experimentalSpecifierResolution": "node",
   "esm": true
   },                              /* Skip type checking all .d.ts files. */
-  "exclude": ["jest.config.ts", "node_modules", "dist", "**/__tests__", "**/*.test.ts", "**/*.spec.ts"],
-  "include": ["**/*.*.ts", "/server.ts", "jest.config.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "jest.config.ts"
+  ],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "server.ts",
+    "jest.config.ts"
+  ]
 }
