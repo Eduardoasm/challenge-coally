@@ -8,8 +8,8 @@ const taskRouter = (0, express_1.Router)();
 taskRouter.post('/', task_validators_1.validateTask, task_controller_1.createTask);
 taskRouter.get('/', task_controller_1.getTasks);
 taskRouter.get('/:id', task_validators_1.validateTaskId, task_controller_1.getTask);
-taskRouter.put('/:id', task_controller_1.updateTask);
-taskRouter.delete('/:id', task_controller_1.deleteTask);
+taskRouter.put('/:id', task_validators_1.validateTask, task_validators_1.validateTaskId, task_controller_1.updateTask);
+taskRouter.delete('/:id', task_validators_1.validateTaskId, task_controller_1.deleteTask);
 exports.default = taskRouter;
 /**
  * @openapi

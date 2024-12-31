@@ -20,7 +20,11 @@ function getTask(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const { id } = req.params;
         try {
-            const task = yield task_service_1.taskService.findOne({ filter: Object.assign(Object.assign({}, req.body), { id }) });
+            const errors = (0, express_validator_1.validationResult)(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+            const task = yield task_service_1.taskService.findOne(Object.assign(Object.assign({}, req.query), { _id: id }));
             return res.status(200).json({ success: true, data: task });
         }
         catch (error) {
@@ -35,7 +39,7 @@ function getTasks(req, res, next) {
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array() });
             }
-            const task = yield task_service_1.taskService.find(req.body);
+            const task = yield task_service_1.taskService.find(req.query);
             return res.status(200).json({ success: true, data: task });
         }
         catch (error) {
@@ -62,6 +66,10 @@ function updateTask(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const { id } = req.params;
         try {
+            const errors = (0, express_validator_1.validationResult)(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
             const task = yield task_service_1.taskService.updateOne({ id, data: req.body });
             return res.status(200).json({ success: true, data: task });
         }
@@ -74,6 +82,10 @@ function deleteTask(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const { id } = req.params;
         try {
+            const errors = (0, express_validator_1.validationResult)(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
             const task = yield task_service_1.taskService.deleteById(id);
             return res.status(200).json({ success: true, data: task });
         }

@@ -27,17 +27,20 @@ function find() {
 }
 function updateOne(_a) {
     return __awaiter(this, arguments, void 0, function* ({ id, data }) {
-        yield findOne({ filter: { id } });
-        yield task_model_1.Task.updateOne({ id }, data);
+        yield findOne({ _id: id });
+        yield task_model_1.Task.updateOne({ _id: id }, data);
         return {
-            success: true,
-            message: 'Advertisement updated successfully'
+            message: 'Task updated successfully'
         };
     });
 }
 function deleteById(TaskId) {
     return __awaiter(this, void 0, void 0, function* () {
-        return task_model_1.Task.findByIdAndDelete(TaskId).exec();
+        yield findOne({ _id: TaskId });
+        yield task_model_1.Task.deleteOne({ _id: TaskId }).exec();
+        return {
+            message: 'Task deleted successfully'
+        };
     });
 }
 function create(task) {

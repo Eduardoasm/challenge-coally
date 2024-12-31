@@ -33,7 +33,7 @@ async function updateOne({
 }): Promise<{ message: string }> {
   await findOne({ _id: id });
 
-  await Task.updateOne({ id }, data)
+  await Task.updateOne({ _id: id }, data)
 
   return {
     message: 'Task updated successfully'

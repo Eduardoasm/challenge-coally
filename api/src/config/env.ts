@@ -1,9 +1,9 @@
 import * as dotenv from 'dotenv'
-dotenv.config({ path: '.env' });
+dotenv.config();
 
 const {
-  PORT: PORT = 3000,
-  DATABASE: DATABASE = 'mongodb+srv://eduardoasm19:edu123456@cluster0.rfekn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+  PORT: PORT,
+  DATABASE: DATABASE
 } = process.env;
 
 export const EnvConfig = () => ({

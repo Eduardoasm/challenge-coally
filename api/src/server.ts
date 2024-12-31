@@ -1,16 +1,14 @@
+import { EnvConfig } from "./config/env";
 import mongoose from "mongoose";
 import app from "./app";
 import http from "http";
-import { EnvConfig } from "./config/env";
 import swaggerDocs from "./utils/swagger";
  
 async function initSever() {
-  console.log("soy process", EnvConfig().DATABASE)
   let connection: typeof mongoose | null = null;
   try {
     connection = await mongoose
-      // .connect(String(process.env.DATABASE))
-      .connect('mongodb+srv://eduardoasm19:edu123456@cluster0.rfekn.mongodb.net/')
+      .connect(String(process.env.DATABASE))
       .then((conn) => {
         console.log('Connected to database');
         return conn;
@@ -18,7 +16,7 @@ async function initSever() {
 
     mongoose.connection.on('error', (err) => `❌🤬❌🤬 ${err}`);
 
-    const PORT = Number(3000);
+    const PORT = Number(EnvConfig().PORT);
 
     const httpServer = http.createServer(app);
 

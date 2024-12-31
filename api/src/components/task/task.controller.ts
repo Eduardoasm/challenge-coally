@@ -13,7 +13,7 @@ export async function getTask(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const task = await taskService.findOne({ ...req.body, _id: id });
+    const task = await taskService.findOne({ ...req.query, _id: id });
     return res.status(200).json({ success: true, data: task });
   } catch (error) {
     next(error);
@@ -30,7 +30,7 @@ export async function getTasks(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const task = await taskService.find(req.body);
+    const task = await taskService.find(req.query);
     return res.status(200).json({ success: true, data: task });
   } catch (error) {
     next(error);
